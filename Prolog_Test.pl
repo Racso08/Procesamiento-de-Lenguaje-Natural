@@ -1,4 +1,4 @@
-%Reglas gramatica
+%Reglas gramaticales
 oracion(O) :- s_nominal(SN), s_verbal(SV), append(SN,SV,O).
 oracion(O) :- s_verbal(SV), append(SV,O).
 
@@ -27,18 +27,11 @@ s_verbal(SV):- verbo(V),complementos(C),append(V,C,SV).
 s_verbal(SV):- verbo(V),s_adjetivo(SA),append(V,SA,SV).
 s_verbal(SV):- verbo(V),s_preposicional(SP),append(V,SP,SV).
 s_verbal(SV):- verbo(V),s_nominal(SN),append(V,SN,SV).
+s_verbal(SV):- verbo(V),append(V,SV).
 
 complementos(C):- complemento(C),complementos(CS),append(C,CS,C).
 complemento(C):- s_nominal(C) | s_adjetivo(C) | s_adverbial(C) | s_adjetivo(C),append(C,C).
 
 %Vocabulario
-
-
-
-s_nominal(SN) :- nombre(SN).
-s_nominal(SN) :- articulo(masculino,A), nombre(N), append(A,N,SN).
-s_verbal(SV) :- verbo(V), s_nominal(SN), append(V,SN,SV).
-articulo(masculino,[el]).
-articulo(femenino,[ella]).
-nombre([gato]). nombre([perro]). nombre([pescado]). nombre([carne]).
-verbo([come]).
+verbo(V,[comer,ir,visitar,establecer]).
+determinante(DT,[mi]).
